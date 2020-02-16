@@ -1,0 +1,20 @@
+Hello world!
+
+<form action="" method="POST">
+    <input type="number" name="measurement" value="0">
+    <input type="submit" value="Save">
+</form>
+
+<div>
+{{ msg }}
+</div>
+
+<div>
+    <ul>
+    {% for value in values %}
+        <li>
+            Value: <b>{{ value.value }}</b>,<i>Measured: {{ value.created }}</i>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
