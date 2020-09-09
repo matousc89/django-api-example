@@ -1,0 +1,16 @@
+<html>
+    <head>
+    </head>
+    <body>
+    {{ text }}
+    <ul>
+    {% for m in measurements %}
+        <li><b>{{ m.value }}</b>, {{ m.created }}, <i>{{ m.pk }}</i></li>
+    {% endfor %}
+    </ul>
+    <div>
+        Other actions:<br>
+        <a href="/create/">Create new measurement</a>
+    </div>
+    </body>
+</html>

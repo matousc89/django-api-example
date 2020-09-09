@@ -1,7 +1,7 @@
-"""examplesite URL Configuration
+"""data_collector URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.1/topics/http/urls/
+    https://docs.djangoproject.com/en/3.1/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -16,15 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from blog.views import homepage
+from data_collector import views, api
 
-import blog.api as api
+api_urls = [
+    path('api/list_all/', api.list_all),
+    path('api/create/', api.create),
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", homepage, name="home"),
+    path('', views.index),
+    path('create/', views.create),
+] + api_urls
 
-    path("api/values/", api.values),
-    path("api/create/", api.create),
-    path("api/delete/", api.delete),
-]
+

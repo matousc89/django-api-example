@@ -48,4 +48,34 @@
    admin.site.register(Author)
    ```
    
+1. api.py:
+    ```
+    from django.http import JsonResponse
    
+    def list_all(request):
+        data = {
+            "text": "Hello world!"
+        }
+        return JsonResponse(data)
+    ```
+   
+1. api.py (csrf exempt):
+    ```
+    from django.views.decorators.csrf import csrf_exempt
+    ```
+
+1. api.py:
+    ```
+    @csrf_exempt
+    def create(request):
+        if request.method == 'GET':
+            return JsonResponse({"status": "Fail"})
+        elif request.method == 'POST':
+            if "value" in request.POST:
+                value = request.POST["value"]
+                Measurement(value=value).save()
+                status = "Ok"
+            else:
+                status = "Fail"
+            return JsonResponse({"status": status})
+    ```
